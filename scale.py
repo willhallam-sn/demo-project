@@ -28,9 +28,9 @@ getResource=subprocess.run(["kubectl","get","-n","demo-project","-f",serviceName
 print(getResource.stdout)
 serviceJson=json.loads(getResource.stdout)
 if (upDown=="up"):
-    newReplicas=serviceJson["spec"]["replicas"]+1
+    newReplicas=serviceJson["spec"]["replicas"]+int(incr)
 if (upDown=="down"):
-    newReplicas=serviceJson["spec"]["replicas"]-1
+    newReplicas=serviceJson["spec"]["replicas"]-int(incr)
 
 if (newReplicas>0):
     kubeScale=subprocess.run(["kubectl","scale","-n","demo-project","--replicas",str(newReplicas),"-f",serviceName+".yaml"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='UTF-8')
