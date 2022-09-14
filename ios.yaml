@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ios
+  labels:
+    svc: ios
+spec:
+  selector:
+    matchLabels:
+      svc: ios
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: ios
+    spec:
+      containers:
+      - image: nginx
+        name: ios
+        ports:
+        - containerPort: 8080
