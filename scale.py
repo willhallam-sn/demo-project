@@ -26,7 +26,6 @@ updateKubeconfig=subprocess.run(["aws","--region","us-east-1","eks","update-kube
 # retrieve JSON for existing object
 getResource=subprocess.run(["kubectl","get","-n","demo-project","-f",serviceName+".yaml","-o","json"],stdout=subprocess.PIPE,encoding='UTF-8')
 
-print(getResource.stdout)
 serviceJson=json.loads(getResource.stdout)
 if (upDown=="up"):
     newReplicas=serviceJson["spec"]["replicas"]+int(incr)
@@ -36,3 +35,4 @@ if (upDown=="down"):
 if (newReplicas>0):
     kubeScale=subprocess.run(["kubectl","scale","-n","demo-project","--replicas",str(newReplicas),"-f",serviceName+".yaml"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='UTF-8')
     print (kubeScale.stdout)
+    print (kubeScale.stderr)
