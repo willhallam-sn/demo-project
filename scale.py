@@ -6,6 +6,7 @@ import sys
 
 # initialize
 incr=1
+newReplicas=0
 
 # parse args
 serviceName=sys.argv[1]
