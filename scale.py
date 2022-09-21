@@ -15,11 +15,6 @@ upDown=sys.argv[2]
 if (len(sys.argv)>3):
     incr=sys.argv[3]
 
-
-# read config file
-
-# cluster name from config file
-
 # update Kubeconfig
 updateKubeconfig=subprocess.run(["aws","--region","us-east-1","eks","update-kubeconfig","--name","hallam-1"])
 
@@ -32,7 +27,9 @@ if (upDown=="up"):
 if (upDown=="down"):
     newReplicas=serviceJson["spec"]["replicas"]-int(incr)
 
-if (newReplicas>0):
-    kubeScale=subprocess.run(["kubectl","scale","-n","demo-project","--replicas",str(newReplicas),"-f",serviceName+".yaml"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='UTF-8')
-    print (kubeScale.stdout)
-    print (kubeScale.stderr)
+if (newReplicas<0):
+    newReplicas=1
+
+kubeScale=subprocess.run(["kubectl","scale","-n","demo-project","--replicas",str(newReplicas),"-f",serviceName+".yaml"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='UTF-8')
+print (kubeScale.stdout)
+print (kubeScale.stderr)

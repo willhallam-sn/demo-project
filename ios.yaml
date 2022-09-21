@@ -4,6 +4,7 @@ metadata:
   name: ios
   labels:
     svc: ios
+    app: ios
 spec:
   selector:
     matchLabels:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         svc: ios
+        app: ios
     spec:
       containers:
       - image: nginx
