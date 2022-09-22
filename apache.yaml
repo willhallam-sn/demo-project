@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache
+  labels:
+    svc: apache
+    app: apache
+spec:
+  selector:
+    matchLabels:
+      svc: apache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: apache
+        app: apache
+    spec:
+      containers:
+      - image: nginx
+        name: apache
+        ports:
+        - containerPort: 8080

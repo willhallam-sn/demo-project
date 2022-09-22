@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: android
+  labels:
+    svc: android
+    app: android
+spec:
+  selector:
+    matchLabels:
+      svc: android
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: android
+        app: android
+    spec:
+      containers:
+      - image: nginx
+        name: android
+        ports:
+        - containerPort: 8080

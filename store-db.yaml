@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-db
+  labels:
+    svc: store-db
+    app: store-db
+spec:
+  selector:
+    matchLabels:
+      svc: store-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: store-db
+        app: store-db
+    spec:
+      containers:
+      - image: nginx
+        name: store-db
+        ports:
+        - containerPort: 8080

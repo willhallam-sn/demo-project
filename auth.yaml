@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+  labels:
+    svc: auth
+    app: auth
+spec:
+  selector:
+    matchLabels:
+      svc: auth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: auth
+        app: auth
+    spec:
+      containers:
+      - image: nginx
+        name: auth
+        ports:
+        - containerPort: 8080

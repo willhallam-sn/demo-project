@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile
+  labels:
+    svc: profile
+    app: profile
+spec:
+  selector:
+    matchLabels:
+      svc: profile
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: profile
+        app: profile
+    spec:
+      containers:
+      - image: nginx
+        name: profile
+        ports:
+        - containerPort: 8080

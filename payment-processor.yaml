@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-processor
+  labels:
+    svc: payment-processor
+    app: payment-processor
+spec:
+  selector:
+    matchLabels:
+      svc: payment-processor
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: payment-processor
+        app: payment-processor
+    spec:
+      containers:
+      - image: nginx
+        name: payment-processor
+        ports:
+        - containerPort: 8080

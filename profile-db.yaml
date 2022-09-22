@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-db
+  labels:
+    svc: profile-db
+    app: profile-db
+spec:
+  selector:
+    matchLabels:
+      svc: profile-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: profile-db
+        app: profile-db
+    spec:
+      containers:
+      - image: nginx
+        name: profile-db
+        ports:
+        - containerPort: 8080

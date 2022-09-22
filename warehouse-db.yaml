@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warehouse-db
+  labels:
+    svc: warehouse-db
+    app: warehouse-db
+spec:
+  selector:
+    matchLabels:
+      svc: warehouse-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: warehouse-db
+        app: warehouse-db
+    spec:
+      containers:
+      - image: nginx
+        name: warehouse-db
+        ports:
+        - containerPort: 8080

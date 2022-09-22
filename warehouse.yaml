@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warehouse
+  labels:
+    svc: warehouse
+    app: warehouse
+spec:
+  selector:
+    matchLabels:
+      svc: warehouse
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: warehouse
+        app: warehouse
+    spec:
+      containers:
+      - image: nginx
+        name: warehouse
+        ports:
+        - containerPort: 8080

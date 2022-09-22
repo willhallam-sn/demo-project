@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-db
+  labels:
+    svc: transaction-db
+    app: transaction-db
+spec:
+  selector:
+    matchLabels:
+      svc: transaction-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: transaction-db
+        app: transaction-db
+    spec:
+      containers:
+      - image: nginx
+        name: transaction-db
+        ports:
+        - containerPort: 8080

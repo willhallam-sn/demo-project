@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-server
+  labels:
+    svc: store-server
+    app: store-server
+spec:
+  selector:
+    matchLabels:
+      svc: store-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: store-server
+        app: store-server
+    spec:
+      containers:
+      - image: nginx
+        name: store-server
+        ports:
+        - containerPort: 8080

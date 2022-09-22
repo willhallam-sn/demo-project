@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend-api-gateway
+  labels:
+    svc: krakend-api-gateway
+    app: krakend-api-gateway
+spec:
+  selector:
+    matchLabels:
+      svc: krakend-api-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: krakend-api-gateway
+        app: krakend-api-gateway
+    spec:
+      containers:
+      - image: nginx
+        name: krakend-api-gateway
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memcached
+  labels:
+    svc: memcached
+    app: memcached
+spec:
+  selector:
+    matchLabels:
+      svc: memcached
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: memcached
+        app: memcached
+    spec:
+      containers:
+      - image: nginx
+        name: memcached
+        ports:
+        - containerPort: 8080
